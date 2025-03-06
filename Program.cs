@@ -10,7 +10,13 @@ logger.Info("Program started");
 
 // deserialize mario json from file into List<Mario>
 string marioFileName = "mario.json";
-List<Mario> marios = JsonSerializer.Deserialize<List<Mario>>(File.ReadAllText(marioFileName))!;
+List<Mario> marios = [];
+// Check if file exists
+if (File.Exists(marioFileName))
+{
+  marios = JsonSerializer.Deserialize<List<Mario>>(File.ReadAllText(marioFileName))!;
+  logger.Info("Characters loaded from {File}", marioFileName);
+}
 
 do
 {
