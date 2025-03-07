@@ -45,6 +45,7 @@ do
     Console.WriteLine("6) Remove Donkey Kong Character");
     Console.WriteLine("7) Display Street Fighter Characters");
     Console.WriteLine("8) Add Street Fighter Character");
+    Console.WriteLine("9) Remove Street Fighter Character");
     Console.WriteLine("Enter to quit");
 
     // input selection
@@ -164,6 +165,30 @@ do
         fighters.Add(fighter);
         File.WriteAllText(sfFileName, JsonSerializer.Serialize(fighters));
         logger.Info($"Character added: {fighter.Name}");
+    }
+    else if (choice == "9")
+    {
+        // Remove Street Fighter Character
+        Console.WriteLine("Enter the Id of the character to remove:");
+        if (UInt32.TryParse(Console.ReadLine(), out UInt32 Id))
+        {
+            Fighter? character = fighters.FirstOrDefault(c => c.Id == Id);
+            if (character == null)
+            {
+                logger.Error($"Character Id {Id} not found");
+            }
+            else
+            {
+                fighters.Remove(character);
+                // Serialize list of characters to json
+                File.WriteAllText(sfFileName, JsonSerializer.Serialize(fighters));
+                logger.Info($"Character removed: {character.Name}");
+            }
+        }
+        else
+        {
+            logger.Error("Invalid Id");
+        }
     }
     else if (string.IsNullOrEmpty(choice))
     {
