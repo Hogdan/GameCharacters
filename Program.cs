@@ -34,6 +34,7 @@ do
     Console.WriteLine("3) Remove Mario Character");
     Console.WriteLine("4) Display Donkey Kong Characters");
     Console.WriteLine("5) Add Donkey Kong Character");
+    Console.WriteLine("6) Remove Donkey Kong Character");
     Console.WriteLine("Enter to quit");
 
     // input selection
@@ -107,6 +108,30 @@ do
         kongs.Add(kong);
         File.WriteAllText(dkFileName, JsonSerializer.Serialize(kongs));
         logger.Info($"Character added: {kong.Name}");
+    }
+    else if (choice == "6")
+    {
+        // Remove Donkey Kong Character
+        Console.WriteLine("Enter the Id of the character to remove:");
+        if (UInt32.TryParse(Console.ReadLine(), out UInt32 Id))
+        {
+            Kong? character = kongs.FirstOrDefault(c => c.Id == Id);
+            if (character == null)
+            {
+                logger.Error($"Character Id {Id} not found");
+            }
+            else
+            {
+                kongs.Remove(character);
+                // Serialize list of characters to json
+                File.WriteAllText(dkFileName, JsonSerializer.Serialize(kongs));
+                logger.Info($"Character removed: {character.Name}");
+            }
+        }
+        else
+        {
+            logger.Error("Invalid Id");
+        }
     }
     else if (string.IsNullOrEmpty(choice))
     {
