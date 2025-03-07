@@ -11,6 +11,8 @@ logger.Info("Program started");
 // deserialize mario json from file into List<Mario>
 string marioFileName = "mario.json";
 string dkFileName = "dk.json";
+string sfFileName = "sf2.json";
+List<Fighter> fighters = [];
 List<Kong> kongs = [];
 List<Mario> marios = [];
 // Check if file exists
@@ -26,6 +28,12 @@ if (File.Exists(dkFileName))
     logger.Info("Characters loaded from {File}", dkFileName);
 }
 
+if (File.Exists(sfFileName))
+{
+    fighters = JsonSerializer.Deserialize<List<Fighter>>(File.ReadAllText(sfFileName))!;
+    logger.Info("Characters loaded from {File}", sfFileName);
+}
+
 do
 {
     // display choices to user
@@ -35,6 +43,7 @@ do
     Console.WriteLine("4) Display Donkey Kong Characters");
     Console.WriteLine("5) Add Donkey Kong Character");
     Console.WriteLine("6) Remove Donkey Kong Character");
+    Console.WriteLine("7) Display Street Fighter Characters");
     Console.WriteLine("Enter to quit");
 
     // input selection
@@ -131,6 +140,14 @@ do
         else
         {
             logger.Error("Invalid Id");
+        }
+    }
+    else if (choice == "7")
+    {
+        // Display Street Fighter Characters
+        foreach (var c in fighters)
+        {
+            Console.WriteLine(c.Display());
         }
     }
     else if (string.IsNullOrEmpty(choice))
