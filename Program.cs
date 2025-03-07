@@ -33,6 +33,7 @@ do
     Console.WriteLine("2) Add Mario Character");
     Console.WriteLine("3) Remove Mario Character");
     Console.WriteLine("4) Display Donkey Kong Characters");
+    Console.WriteLine("5) Add Donkey Kong Character");
     Console.WriteLine("Enter to quit");
 
     // input selection
@@ -92,6 +93,20 @@ do
         {
             Console.WriteLine(c.Display());
         }
+    }
+    else if (choice == "5")
+    {
+        // Add Donkey Kong Character
+        // Generate unique Id
+        Kong kong = new()
+        {
+            Id = kongs.Count == 0 ? 1 : kongs.Max(c => c.Id) + 1
+        };
+        InputCharacter(kong);
+        // Add Character
+        kongs.Add(kong);
+        File.WriteAllText(dkFileName, JsonSerializer.Serialize(kongs));
+        logger.Info($"Character added: {kong.Name}");
     }
     else if (string.IsNullOrEmpty(choice))
     {
