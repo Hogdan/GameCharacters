@@ -44,6 +44,7 @@ do
     Console.WriteLine("5) Add Donkey Kong Character");
     Console.WriteLine("6) Remove Donkey Kong Character");
     Console.WriteLine("7) Display Street Fighter Characters");
+    Console.WriteLine("8) Add Street Fighter Character");
     Console.WriteLine("Enter to quit");
 
     // input selection
@@ -149,6 +150,20 @@ do
         {
             Console.WriteLine(c.Display());
         }
+    }
+    else if (choice == "8")
+    {
+        // Add Street Fighter Character
+        // Generate unique Id
+        Fighter fighter = new()
+        {
+            Id = fighters.Count == 0 ? 1 : fighters.Max(c => c.Id) + 1
+        };
+        InputCharacter(fighter);
+        // Add Character
+        fighters.Add(fighter);
+        File.WriteAllText(sfFileName, JsonSerializer.Serialize(fighters));
+        logger.Info($"Character added: {fighter.Name}");
     }
     else if (string.IsNullOrEmpty(choice))
     {
