@@ -273,6 +273,30 @@ do
             logger.Error("Invalid choice");
         }
     }
+    else if (choice == "slots")
+    {
+        // Slot Game easter egg
+        SlotGame slotGame = new(100);
+        do
+        {
+            Console.WriteLine("Enter to Pull Lever");
+            Console.WriteLine("q to quit");
+            string? slotChoice = Console.ReadLine();
+            logger.Info("User choice: {Choice}", slotChoice);
+            if (string.IsNullOrEmpty(slotChoice))
+            {
+                slotGame.PullLever();
+            }
+            else if (slotChoice == "q")
+            {
+                break;
+            }
+            else
+            {
+                logger.Info("Invalid choice");
+            }
+        } while (true);
+    }
     else if (string.IsNullOrEmpty(choice))
     {
         break;
