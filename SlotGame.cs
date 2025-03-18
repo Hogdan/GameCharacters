@@ -12,9 +12,9 @@ public class SlotGame
     public SlotGame(int tokens)
     {
         this.tokens = tokens;
-        reel1 = new Reel(2, 4, 3, 2, 1);
-        reel2 = new Reel(2, 4, 2, 2, 1);
-        reel3 = new Reel(2, 4, 3, 2, 1);
+        reel1 = new Reel(3, 4, 3, 2, 1);
+        reel2 = new Reel(3, 4, 2, 2, 1);
+        reel3 = new Reel(3, 4, 3, 2, 1);
     }
 
     public void PullLever()
@@ -30,10 +30,10 @@ public class SlotGame
             System.Console.WriteLine("\t┃╔═╦═╦═╗┃");
             System.Console.WriteLine($"\t┃║{reel1.GetSymbol()}║{reel2.GetSymbol()}║{reel3.GetSymbol()}║┃ O");
             System.Console.WriteLine("\t┃╚═╩═╩═╝┃ ┃");
+            System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┣━┛");
             int score = GetScore();
             if (score > 0)
             {
-                System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┣━┛");
                 System.Console.WriteLine("\t┃ !WIN! ┃");
                 System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┃");
                 System.Console.WriteLine("\t┗━━━━━━━┛\n");
@@ -42,7 +42,6 @@ public class SlotGame
             }
             else
             {
-                System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┣━┛");
                 System.Console.WriteLine("\t┃       ┃");
                 System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┃");
                 System.Console.WriteLine("\t┗━━━━━━━┛\n");
@@ -64,11 +63,11 @@ public class SlotGame
         {
             return reel1.GetSymbol() switch
             {
-                "S" => 50,
-                "A" => 10,
+                "S" => 1000,
+                "A" => 100,
                 "B" => 20,
-                "C" => 30,
-                "D" => 40,
+                "C" => 10,
+                "D" => 5,
                 _ => 0,
             };
         }

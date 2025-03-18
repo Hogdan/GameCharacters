@@ -28,7 +28,7 @@ public class Reel
             Shuffle(symbols);
         }
 
-        for (int i = a; i > 0; i--) ;
+        for (int i = a; i > 0; i--)
         {
             symbols.Add("A");
         }
