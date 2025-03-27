@@ -1,7 +1,3 @@
-
-
-using System.Security.Cryptography.X509Certificates;
-
 public class SlotGame
 {
     private int tokens;
@@ -26,25 +22,25 @@ public class SlotGame
             reel2.Spin();
             reel3.Spin();
             System.Console.WriteLine("Spinning . . .\n");
-            System.Console.WriteLine("\t┏━━━━━━━┓");
-            System.Console.WriteLine("\t┃╔═╦═╦═╗┃");
-            System.Console.WriteLine($"\t┃║{reel1.GetSymbol()}║{reel2.GetSymbol()}║{reel3.GetSymbol()}║┃ O");
-            System.Console.WriteLine("\t┃╚═╩═╩═╝┃ ┃");
-            System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┣━┛");
+            System.Console.WriteLine("\t┌───────┐");
+            System.Console.WriteLine("\t│╔═╦═╦═╗│");
+            System.Console.WriteLine($"\t│║{reel1.GetSymbol()}║{reel2.GetSymbol()}║{reel3.GetSymbol()}║│ O");
+            System.Console.WriteLine("\t│╚═╩═╩═╝│ │");
+            System.Console.WriteLine("\t│┌─────┐├─┘");
             int score = GetScore();
             if (score > 0)
             {
-                System.Console.WriteLine("\t┃ !WIN! ┃");
-                System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┃");
-                System.Console.WriteLine("\t┗━━━━━━━┛\n");
+                System.Console.WriteLine("\t││!WIN!││");
+                System.Console.WriteLine("\t│└─────┘│");
+                System.Console.WriteLine("\t└───────┘\n");
                 tokens += score;
                 System.Console.WriteLine($"You won {score} tokens!");
             }
             else
             {
-                System.Console.WriteLine("\t┃       ┃");
-                System.Console.WriteLine("\t┃ ┄┄┄┄┄ ┃");
-                System.Console.WriteLine("\t┗━━━━━━━┛\n");
+                System.Console.WriteLine("\t││     ││");
+                System.Console.WriteLine("\t│└─────┘│");
+                System.Console.WriteLine("\t└───────┘\n");
                 System.Console.WriteLine("You lost!");
             }
             System.Console.WriteLine();
